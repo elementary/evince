@@ -25,7 +25,7 @@ jobs:
         uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v3
         with:
           bundle: org.gnome.evince.flatpak
-          manifest-path: org.gnome.evince.yml
+          manifest-path: org.gnome.evince.json
           repository-name: appcenter
           repository-url: https://flatpak.elementary.io/repo.flatpakrepo
           cache-key: "flatpak-builder-${{ github.sha }}"
