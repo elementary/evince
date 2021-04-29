@@ -1,0 +1,185 @@
+{
+    "app-id" : "org.gnome.Evince",
+    "runtime" : "io.elementary.Sdk",
+    "runtime-version" : "daily",
+    "sdk" : "io.elementary.Sdk",
+    "command" : "evince",
+    "copy-icon" : true,
+    "finish-args" : [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--filesystem=host",
+        "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
+        "--filesystem=xdg-run/dconf",
+        "--filesystem=~/.config/dconf:ro",
+        "--talk-name=ca.desrt.dconf",
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+        "--talk-name=org.gtk.vfs",
+        "--talk-name=org.gtk.vfs.*",
+        "--talk-name=org.gnome.SessionManager",
+        "--talk-name=org.freedesktop.FileManager1",
+        "--own-name=org.gnome.evince",
+        "--own-name=org.gnome.evince.Daemon"
+    ],
+    "build-options" : {
+        "cflags" : "-O2 -g",
+        "cxxflags" : "-O2 -g",
+        "env" : {
+            "V" : "1"
+        }
+    },
+    "cleanup" : [
+        "/include",
+        "/lib/pkgconfig",
+        "/share/pkgconfig",
+        "/share/aclocal",
+        "/man",
+        "/share/man",
+        "/share/gtk-doc",
+        "/share/vala",
+        "*.la",
+        "*.a"
+    ],
+    "modules" : [
+        {
+            "name" : "webp-pixbuf-loader",
+            "buildsystem" : "cmake-ninja",
+            "env": {
+                "GDK_PIXBUF_MODULEDIR": "/app/lib/evince/gdk-pixbuf/2.10.0/"
+            },
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/aruiz/webp-pixbuf-loader.git",
+                    "commit" : "9b92950d49d7939f90ba7413deb7ec6b392b2054"
+                }
+            ],
+            "post-install" : [
+                "gdk-pixbuf-query-loaders > $GDK_PIXBUF_MODULEDIR/loaders.cache"
+            ]
+        },
+        {
+            "name" : "popplerdata",
+            "no-autogen" : true,
+            "make-install-args" : [
+                "prefix=/app"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://poppler.freedesktop.org/poppler-data-0.4.9.tar.gz",
+                    "sha256" : "1f9c7e7de9ecd0db6ab287349e31bf815ca108a5a175cf906a90163bdbe32012"
+                }
+            ]
+        },
+        {
+            "name" : "poppler",
+            "buildsystem" : "cmake-ninja",
+            "config-opts" : [
+                "-DCMAKE_INSTALL_LIBDIR=/app/lib",
+                "-DCMAKE_INSTALL_INCLUDEDIR=/app/include",
+				"-DENABLE_LIBOPENJPEG=openjpeg2",
+                "-DENABLE_SPLASH=OFF",
+                "-DENABLE_GOBJECT_INTROSPECTION=OFF",
+                "-DENABLE_CPP=OFF",
+                "-DENABLE_UTILS=OFF",
+                "-DBUILD_GTK_TESTS=OFF"
+            ],
+            "cleanup" : [
+                "/bin"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://poppler.freedesktop.org/poppler-0.89.0.tar.xz",
+                    "sha256" : "fba230364537782cc5d43b08d693ef69c36586286349683c7b127156a8ef9b5c"
+                }
+            ]
+        },
+        {
+            "name" : "djvulibre",
+            "config-opts" : [
+                "--disable-desktopfiles"
+            ],
+            "cleanup" : [
+                "/bin"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://downloads.sourceforge.net/project/djvu/DjVuLibre/3.5.27/djvulibre-3.5.27.tar.gz",
+                    "sha256" : "e69668252565603875fb88500cde02bf93d12d48a3884e472696c896e81f505f"
+                }
+            ]
+        },
+        {
+            "name" : "libgxps",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Denable-test=false",
+                "-Ddisable-introspection=true"
+            ],
+            "cleanup" : [
+                "/bin"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://download.gnome.org/sources/libgxps/0.3/libgxps-0.3.1.tar.xz",
+                    "sha256" : "1a939fc8fcea9471b7eca46b1ac90cff89a30d26f65c7c9a375a4bf91223fa94"
+                }
+            ]
+        },
+        {
+            "name" : "gspell",
+            "cleanup" : [
+                "/bin"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://download.gnome.org/sources/gspell/1.8/gspell-1.8.2.tar.xz",
+                    "sha256" : "bb9195c3a95bacf556d0203e9691f7489e0d3bc5ae1e5a440c89b2f2435d3ed6"
+                }
+            ]
+        },
+        {
+            "name" : "gnome-desktop",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Ddesktop_docs=false",
+                "-Ddebug_tools=false"
+            ],
+            "cleanup" : [
+                "/lib/girepository-1.0",
+                "/share/gir-1.0"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "http://download.gnome.org/sources/gnome-desktop/3.36/gnome-desktop-3.36.1.tar.xz",
+                    "sha256" : "8c6fe59e567f134e4f6508d968d5d09cbe12382d18af9a11a4f51ada6c80a880"
+                }
+            ]
+        },
+        {
+            "name" : "evince",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dnautilus=false",
+                "-Dgtk_doc=false",
+                "-Dintrospection=false",
+				        "-Dthumbnailer=false",
+                "-Duser_doc=false"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/evince.git",
+                    "tag" : "40.1"
+                }
+            ]
+        }
+    ]
+}
