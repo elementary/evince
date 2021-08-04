@@ -1,6 +1,6 @@
 {
     "app-id" : "org.gnome.Evince",
-    "runtime" : "io.elementary.Sdk",
+    "runtime" : "io.elementary.Platform",
     "runtime-version" : "6",
     "sdk" : "io.elementary.Sdk",
     "command" : "evince",
