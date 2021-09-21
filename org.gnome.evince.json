@@ -17,6 +17,7 @@
         "--talk-name=org.gtk.vfs.*",
         "--talk-name=org.gnome.SessionManager",
         "--talk-name=org.freedesktop.FileManager1",
+        "--system-talk-name=org.freedesktop.Accounts",
         "--own-name=org.gnome.evince",
         "--own-name=org.gnome.evince.Daemon",
         "--require-version=0.11.6"
@@ -163,14 +164,20 @@
             "buildsystem": "meson",
             "config-opts": [
                 "-Dnautilus=false",
-                "-Dthumbnailer=false"
+                "-Dthumbnailer=false",
+                "-Dgtk_doc=false",
+                "-Dintrospection=false"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/evince/40/evince-40.1.tar.xz",
-                    "sha256": "7a666363c350af2e3bbba7f14b3c1befc5012f9ed3d9d073447f4c59f33dcf2d",
+                    "url": "https://download.gnome.org/sources/evince/40/evince-40.4.tar.xz",
+                    "sha256": "33420500e0e060f178a435063197d42dae7b67e39cc437a96510a33ddf7e95fb",
                     "git-init": true
+                },
+                {
+                    "type": "patch",
+                    "path": "dark-style.patch"
                 }
             ]
         }
