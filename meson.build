@@ -1,3 +1,3 @@
-project(
-    'org.gnome.Evince'
-)
+project('org.gnome.Evince')
+
+subdir('data')
