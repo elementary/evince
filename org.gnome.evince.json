@@ -183,7 +183,11 @@
         },
         {
             "name": "customizations",
-            "buildsystem": "meson"
+            "buildsystem": "meson",
+            "sources": [{
+                "type": "dir",
+                "path": "."
+            }]
         }
     ]
 }
