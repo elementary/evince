@@ -180,6 +180,10 @@
                     "path": "dark-style.patch"
                 }
             ]
+        },
+        {
+            "name": "customizations",
+            "buildsystem": "meson"
         }
     ]
 }
