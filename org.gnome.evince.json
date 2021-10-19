@@ -178,16 +178,12 @@
                 {
                     "type": "patch",
                     "path": "dark-style.patch"
+                },
+                {
+                    "type": "dir",
+                    "path": "."
                 }
             ]
-        },
-        {
-            "name": "customizations",
-            "buildsystem": "meson",
-            "sources": [{
-                "type": "dir",
-                "path": "."
-            }]
         }
     ]
 }
