@@ -179,6 +179,9 @@
                     "type": "patch",
                     "path": "dark-style.patch"
                 }
+            ],
+            "cleanup": [
+                "org.gnome.Evince.svg"
             ]
         },
         {
