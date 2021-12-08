@@ -1,17 +1,17 @@
 diff --git a/meson.build b/meson.build
-index 72396a0..8a0fff1 100644
+index 07fb8ec4..490b61d5 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -155,6 +155,7 @@ gmodule_dep = dependency('gmodule-2.0')
+@@ -162,6 +162,7 @@ gmodule_dep = dependency('gmodule-2.0')
  gmodule_no_export_dep = dependency('gmodule-no-export-2.0', version: glib_req_version)
  gtk_dep = dependency('gtk+-3.0', version: gtk_req_version)
  gthread_dep = dependency('gthread-2.0', version: glib_req_version)
 +granite_dep = dependency('granite')
- hdy_dep = dependency('libhandy-1', version: hdy_req_version)
+ # Keep the version here synchronised with subprojects/libhandy.wrap
+ hdy_dep = dependency('libhandy-1', version: hdy_req_version, fallback: ['libhandy', 'libhandy_dep'])
  
- m_dep = cc.find_library('m')
 diff --git a/shell/ev-application.c b/shell/ev-application.c
-index c6f51c1..f103080 100644
+index e704bda2..8d937b03 100644
 --- a/shell/ev-application.c
 +++ b/shell/ev-application.c
 @@ -30,6 +30,7 @@
@@ -19,18 +19,9 @@ index c6f51c1..f103080 100644
  #include <glib/gstdio.h>
  #include <gtk/gtk.h>
 +#include <granite.h>
- #include <libhandy-1/handy.h>
+ #include <handy.h>
  #ifdef GDK_WINDOWING_X11
  #include <gdk/gdkx.h>
-@@ -176,7 +177,7 @@ ev_spawn (const char     *uri,
- 
- 	g_string_append_printf (cmd, " %s", path);
- 	g_free (path);
--	
-+
- 	/* Page label */
- 	if (dest) {
-                 switch (ev_link_dest_get_dest_type (dest)) {
 @@ -940,6 +941,20 @@ ev_application_migrate_config_dir (EvApplication *application)
          g_free (old_accels);
  }
@@ -73,7 +64,7 @@ index c6f51c1..f103080 100644
                  gtk_application_set_accels_for_action (GTK_APPLICATION (application), it[0], &it[1]);
  }
 diff --git a/shell/meson.build b/shell/meson.build
-index 7cbc48f..a3089b1 100644
+index 7cbc48f2..a3089b13 100644
 --- a/shell/meson.build
 +++ b/shell/meson.build
 @@ -52,6 +52,7 @@ sources += gnome.compile_resources(
