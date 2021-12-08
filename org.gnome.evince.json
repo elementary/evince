@@ -1,7 +1,7 @@
 {
     "app-id": "org.gnome.Evince",
     "runtime": "io.elementary.Platform",
-    "runtime-version": "6",
+    "runtime-version": "6.1",
     "sdk": "io.elementary.Sdk",
     "command": "evince",
     "finish-args": [
@@ -169,10 +169,10 @@
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/evince/40/evince-40.4.tar.xz",
-                    "sha256": "33420500e0e060f178a435063197d42dae7b67e39cc437a96510a33ddf7e95fb",
-                    "git-init": true
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/evince.git",
+                    "tag": "41.3",
+                    "commit": "08780f527ac0306f527c48ea6cc77a7b2c6c5fa8"
                 },
                 {
                     "type": "patch",
