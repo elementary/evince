@@ -1,7 +1,7 @@
 {
     "app-id": "org.gnome.Evince",
     "runtime": "io.elementary.Platform",
-    "runtime-version": "6",
+    "runtime-version": "6.1",
     "sdk": "io.elementary.Sdk",
     "command": "evince",
     "finish-args": [
@@ -42,12 +42,15 @@
     "modules": [
         {
             "name": "webp-pixbuf-loader",
-            "buildsystem": "cmake-ninja",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Dgdk_pixbuf_moduledir=/app/lib/gdk-pixbuf-2.0/2.10.0/loaders/"
+            ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/aruiz/webp-pixbuf-loader.git",
-                    "commit": "ddbcacf37d98aeca24429ee2cd975fb804d1f265"
+                    "commit": "ffddc060497ee11d6cc573dae01a528b357b91ec"
                 }
             ],
             "post-install": [
@@ -64,8 +67,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://poppler.freedesktop.org/poppler-data-0.4.10.tar.gz",
-                    "sha256": "6e2fcef66ec8c44625f94292ccf8af9f1d918b410d5aa69c274ce67387967b30"
+                    "url": "https://poppler.freedesktop.org/poppler-data-0.4.11.tar.gz",
+                    "sha256": "2cec05cd1bb03af98a8b06a1e22f6e6e1a65b1e2f3816cb3069bb0874825f08c"
                 }
             ]
         },
@@ -88,8 +91,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://poppler.freedesktop.org/poppler-21.08.0.tar.xz",
-                    "sha256": "e9cf5dc5964bce4bb0264d1c4f8122706c910588b421cfc30abc97d6b23e602d"
+                    "url": "https://poppler.freedesktop.org/poppler-21.12.0.tar.xz",
+                    "sha256": "acb840c2c1ec07d07e53c57c4b3a1ff3e3ee2d888d44e1e9f2f01aaf16814de7"
                 }
             ]
         },
@@ -154,8 +157,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-desktop/40/gnome-desktop-40.0.tar.xz",
-                    "sha256": "20abfd3f831e4e8092b55839311661dc73b2bf13fc9bef71c4a5a4475da9ee04"
+                    "url": "https://download.gnome.org/sources/gnome-desktop/41/gnome-desktop-41.2.tar.xz",
+                    "sha256": "34329eefdacad2332a6adbae538c8da6e52235c7775a908b7c32040a0753ec6a"
                 }
             ]
         },
@@ -164,16 +167,33 @@
             "buildsystem": "meson",
             "config-opts": [
                 "-Dnautilus=false",
-                "-Dthumbnailer=false"
+                "-Dthumbnailer=false",
+                "-Dgtk_doc=false",
+                "-Dintrospection=false"
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/evince/40/evince-40.1.tar.xz",
-                    "sha256": "7a666363c350af2e3bbba7f14b3c1befc5012f9ed3d9d073447f4c59f33dcf2d",
-                    "git-init": true
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/evince.git",
+                    "tag": "41.3",
+                    "commit": "08780f527ac0306f527c48ea6cc77a7b2c6c5fa8"
+                },
+                {
+                    "type": "patch",
+                    "path": "dark-style.patch"
                 }
+            ],
+            "cleanup": [
+                "org.gnome.Evince.svg"
             ]
+        },
+        {
+            "name": "customizations",
+            "buildsystem": "meson",
+            "sources": [{
+                "type": "dir",
+                "path": "."
+            }]
         }
     ]
 }
