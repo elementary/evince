@@ -8,6 +8,7 @@
         "--share=ipc",
         "--socket=x11",
         "--socket=wayland",
+        "--socket=cups",
         "--socket=pulseaudio",
         "--filesystem=host",
         "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
