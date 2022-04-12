@@ -176,7 +176,7 @@
                     "type": "git",
                     "url": "https://gitlab.gnome.org/GNOME/evince.git",
                     "tag": "42.1",
-                    "commit": "a195ba3da24f4cb7470d19aa059d043df7346203b0ad"
+                    "commit": "67084a4f4ec10445bf8f3ef2cf98cb0ccaabcb19"
                 },
                 {
                     "type": "patch",
