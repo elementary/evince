@@ -163,6 +163,24 @@
             ]
         },
         {
+            "name" : "libhandy",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dintrospection=enabled",
+                "-Dvapi=true",
+                "-Dgtk_doc=true",
+                "-Dtests=false",
+                "-Dexamples=false"
+            ],
+            "sources" : [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libhandy.git",
+                    "commit": "4bb04997e5021e9f12cd83bd086c1f73795513a4"
+                }
+            ]
+        },
+        {
             "name": "evince",
             "buildsystem": "meson",
             "config-opts": [
