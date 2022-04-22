@@ -13,7 +13,6 @@
         "--filesystem=host",
         "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
         "--metadata=X-DConf=migrate-path=/org/gnome/evince/",
-        "--env=GDK_PIXBUF_MODULE_FILE=/app/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache",
         "--talk-name=org.gtk.vfs",
         "--talk-name=org.gtk.vfs.*",
         "--talk-name=org.gnome.SessionManager",
@@ -22,9 +21,11 @@
         "--own-name=org.gnome.evince.Daemon",
         "--require-version=0.11.6"
     ],
-    "build-options": {
-        "env": {
-            "V": "1"
+    "build-options" : {
+        "cflags" : "-O2 -g",
+        "cxxflags" : "-O2 -g",
+        "env" : {
+            "V" : "1"
         }
     },
     "cleanup": [
@@ -40,22 +41,28 @@
         "*.a"
     ],
     "modules": [
+        "python3-gi-docgen-dependencies.json",
         {
             "name": "webp-pixbuf-loader",
             "buildsystem": "meson",
-            "config-opts": [
-                "-Dgdk_pixbuf_moduledir=/app/lib/gdk-pixbuf-2.0/2.10.0/loaders/"
+            "build-options": {
+                "env": {
+                    "GDK_PIXBUF_MODULEDIR": "/app/lib/evince/gdk-pixbuf/2.10.0/"
+                }
+            },
+            "config-opts" : [
+                "-Dgdk_pixbuf_moduledir=/app/lib/evince/gdk-pixbuf/2.10.0/"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/aruiz/webp-pixbuf-loader.git",
-                    "commit": "ffddc060497ee11d6cc573dae01a528b357b91ec"
+                    "commit": "ffddc060497ee11d6cc573dae01a528b357b91ec",
+                    "tag": "0.0.3"
                 }
             ],
             "post-install": [
-                "GDK_PIXBUF_MODULEDIR=/app/lib/gdk-pixbuf-2.0/2.10.0/loaders/ gdk-pixbuf-query-loaders > loaders.cache",
-                "cat /usr/lib/*/gdk-pixbuf-2.0/2.10.0/loaders.cache loaders.cache > /app/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+                "gdk-pixbuf-query-loaders > $GDK_PIXBUF_MODULEDIR/loaders.cache"
             ]
         },
         {
@@ -68,7 +75,12 @@
                 {
                     "type": "archive",
                     "url": "https://poppler.freedesktop.org/poppler-data-0.4.11.tar.gz",
-                    "sha256": "2cec05cd1bb03af98a8b06a1e22f6e6e1a65b1e2f3816cb3069bb0874825f08c"
+                    "sha256": "2cec05cd1bb03af98a8b06a1e22f6e6e1a65b1e2f3816cb3069bb0874825f08c",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 3687,
+                        "url-template": "https://poppler.freedesktop.org/poppler-data-$version.tar.gz"
+                    }
                 }
             ]
         },
@@ -80,10 +92,12 @@
                 "-DCMAKE_INSTALL_INCLUDEDIR=/app/include",
                 "-DBUILD_GTK_TESTS=OFF",
                 "-DBUILD_CPP_TESTS=OFF",
-                "-DENABLE_BOOST=OFF",
                 "-DENABLE_CPP=OFF",
+                "-DENABLE_BOOST=OFF",
                 "-DENABLE_GOBJECT_INTROSPECTION=OFF",
-                "-DENABLE_LIBOPENJPEG=openjpeg2"
+                "-DENABLE_LIBOPENJPEG=openjpeg2",
+                "-DENABLE_QT5=OFF",
+                "-DENABLE_QT6=OFF"
             ],
             "cleanup": [
                 "/bin"
@@ -91,8 +105,13 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://poppler.freedesktop.org/poppler-21.12.0.tar.xz",
-                    "sha256": "acb840c2c1ec07d07e53c57c4b3a1ff3e3ee2d888d44e1e9f2f01aaf16814de7"
+                    "url": "https://poppler.freedesktop.org/poppler-22.02.0.tar.xz",
+                    "sha256": "e390c8b806f6c9f0e35c8462033e0a738bb2460ebd660bdb8b6dca01556193e1",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 3686,
+                        "url-template": "https://poppler.freedesktop.org/poppler-$version.tar.xz"
+                    }
                 }
             ]
         },
@@ -108,25 +127,30 @@
                 {
                     "type": "archive",
                     "url": "https://downloads.sourceforge.net/project/djvu/DjVuLibre/3.5.28/djvulibre-3.5.28.tar.gz",
-                    "sha256": "fcd009ea7654fde5a83600eb80757bd3a76998e47d13c66b54c8db849f8f2edc"
+                    "sha256": "fcd009ea7654fde5a83600eb80757bd3a76998e47d13c66b54c8db849f8f2edc",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 10159,
+                        "url-template": "https://downloads.sourceforge.net/project/djvu/DjVuLibre/$version/djvulibre-$version.tar.gz"
+                    }
                 }
             ]
         },
         {
-            "name": "libgxps",
-            "buildsystem": "meson",
-            "config-opts": [
+            "name" : "libgxps",
+            "buildsystem" : "meson",
+            "config-opts" : [
                 "-Denable-test=false",
                 "-Ddisable-introspection=true"
             ],
-            "cleanup": [
+            "cleanup" : [
                 "/bin"
             ],
-            "sources": [
+            "sources" : [
                 {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/libgxps/0.3/libgxps-0.3.2.tar.xz",
-                    "sha256": "6d27867256a35ccf9b69253eb2a88a32baca3b97d5f4ef7f82e3667fa435251c"
+                    "type" : "archive",
+                    "url" : "https://download.gnome.org/sources/libgxps/0.3/libgxps-0.3.2.tar.xz",
+                    "sha256" : "6d27867256a35ccf9b69253eb2a88a32baca3b97d5f4ef7f82e3667fa435251c"
                 }
             ]
         },
@@ -144,6 +168,19 @@
             ]
         },
         {
+            "name": "libarchive",
+            "cleanup": [
+                "/bin"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://libarchive.org/downloads/libarchive-3.6.0.tar.xz",
+                    "sha256": "df283917799cb88659a5b33c0a598f04352d61936abcd8a48fe7b64e74950de7"
+                }
+            ]
+        },
+        {
             "name": "gnome-desktop",
             "buildsystem": "meson",
             "config-opts": [
@@ -157,8 +194,26 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-desktop/41/gnome-desktop-41.2.tar.xz",
-                    "sha256": "34329eefdacad2332a6adbae538c8da6e52235c7775a908b7c32040a0753ec6a"
+                    "url": "https://download.gnome.org/sources/gnome-desktop/41/gnome-desktop-41.1.tar.xz",
+                    "sha256": "be8aafa64d7ba2fd31079eed639d39fda1ea77ef77d35a678f019c4d91d473c2"
+                }
+            ]
+        },
+        {
+            "name" : "libhandy",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dintrospection=enabled",
+                "-Dvapi=true",
+                "-Dgtk_doc=true",
+                "-Dtests=false",
+                "-Dexamples=false"
+            ],
+            "sources" : [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/libhandy.git",
+                    "commit": "4bb04997e5021e9f12cd83bd086c1f73795513a4"
                 }
             ]
         },
@@ -193,12 +248,8 @@
                 {
                     "type": "git",
                     "url": "https://gitlab.gnome.org/GNOME/evince.git",
-                    "tag": "41.3",
-                    "commit": "08780f527ac0306f527c48ea6cc77a7b2c6c5fa8"
-                },
-                {
-                    "type": "patch",
-                    "path": "dark-style.patch"
+                    "tag": "42.2",
+                    "commit": "05d656cb835704339375f8e514d694b1201fe686"
                 }
             ],
             "cleanup": [
