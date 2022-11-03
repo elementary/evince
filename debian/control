@@ -1,13 +1,13 @@
-Source: org.gnome.Evince
+Source: org.gnome.evince
 Section: x11
-Maintainer: elementary, Inc. <builds@elementary.io>
+Priority: optional
+Maintainer: elementary Inc. <builds@elementary.io>
 Build-Depends: debhelper (>= 10.5.1)
-Standards-Version: 3.9.6
+Standards-Version: 4.1.1
 Homepage: https://github.com/elementary/evince
 
-Package: org.gnome.Evince
+Package: org.gnome.evince
 Architecture: any
-Priority: optional
 Depends: flatpak, ${misc:Depends}
-Description: Evince
+Description: Evince flatpak'd for elementary OS
  Evince Document Viewer flatpak built against the elementary platform
