@@ -248,8 +248,7 @@
                 {
                     "type": "git",
                     "url": "https://gitlab.gnome.org/GNOME/evince.git",
-                    "tag": "42.2",
-                    "commit": "05d656cb835704339375f8e514d694b1201fe686"
+                    "tag": "42.4"
                 }
             ],
             "cleanup": [
