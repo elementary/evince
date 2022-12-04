@@ -13,7 +13,7 @@
         "--filesystem=host",
         "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
         "--metadata=X-DConf=migrate-path=/org/gnome/evince/",
-        "--talk-name=org.gtk.vfs",
+        "--filesystem=xdg-run/gvfsd",
         "--talk-name=org.gtk.vfs.*",
         "--talk-name=org.gnome.SessionManager",
         "--talk-name=org.freedesktop.FileManager1",
@@ -21,11 +21,9 @@
         "--own-name=org.gnome.evince.Daemon",
         "--require-version=0.11.6"
     ],
-    "build-options" : {
-        "cflags" : "-O2 -g",
-        "cxxflags" : "-O2 -g",
-        "env" : {
-            "V" : "1"
+    "build-options": {
+        "env": {
+            "V": "1"
         }
     },
     "cleanup": [
@@ -41,7 +39,6 @@
         "*.a"
     ],
     "modules": [
-        "python3-gi-docgen-dependencies.json",
         {
             "name": "webp-pixbuf-loader",
             "buildsystem": "meson",
@@ -57,8 +54,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/aruiz/webp-pixbuf-loader.git",
-                    "commit": "ffddc060497ee11d6cc573dae01a528b357b91ec",
-                    "tag": "0.0.3"
+                    "commit": "1e1cad735784d16dd9b46d0415095d23029ab017",
+                    "tag": "0.0.6"
                 }
             ],
             "post-install": [
@@ -105,8 +102,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://poppler.freedesktop.org/poppler-22.02.0.tar.xz",
-                    "sha256": "e390c8b806f6c9f0e35c8462033e0a738bb2460ebd660bdb8b6dca01556193e1",
+                    "url": "https://poppler.freedesktop.org/poppler-22.11.0.tar.xz",
+                    "sha256": "093ba9844ed774285517361c15e21a31ba4df278a499263d4403cca74f2da828",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 3686,
@@ -143,14 +140,14 @@
                 "-Denable-test=false",
                 "-Ddisable-introspection=true"
             ],
-            "cleanup" : [
+            "cleanup": [
                 "/bin"
             ],
-            "sources" : [
+            "sources": [
                 {
-                    "type" : "archive",
-                    "url" : "https://download.gnome.org/sources/libgxps/0.3/libgxps-0.3.2.tar.xz",
-                    "sha256" : "6d27867256a35ccf9b69253eb2a88a32baca3b97d5f4ef7f82e3667fa435251c"
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/libgxps/0.3/libgxps-0.3.2.tar.xz",
+                    "sha256": "6d27867256a35ccf9b69253eb2a88a32baca3b97d5f4ef7f82e3667fa435251c"
                 }
             ]
         },
@@ -168,19 +165,6 @@
             ]
         },
         {
-            "name": "libarchive",
-            "cleanup": [
-                "/bin"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://libarchive.org/downloads/libarchive-3.6.0.tar.xz",
-                    "sha256": "df283917799cb88659a5b33c0a598f04352d61936abcd8a48fe7b64e74950de7"
-                }
-            ]
-        },
-        {
             "name": "gnome-desktop",
             "buildsystem": "meson",
             "config-opts": [
@@ -194,44 +178,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-desktop/41/gnome-desktop-41.1.tar.xz",
-                    "sha256": "be8aafa64d7ba2fd31079eed639d39fda1ea77ef77d35a678f019c4d91d473c2"
-                }
-            ]
-        },
-        {
-            "name" : "libhandy",
-            "buildsystem" : "meson",
-            "config-opts" : [
-                "-Dintrospection=enabled",
-                "-Dvapi=true",
-                "-Dgtk_doc=true",
-                "-Dtests=false",
-                "-Dexamples=false"
-            ],
-            "sources" : [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/libhandy.git",
-                    "commit": "4bb04997e5021e9f12cd83bd086c1f73795513a4"
-                }
-            ]
-        },
-        {
-            "name" : "libhandy",
-            "buildsystem" : "meson",
-            "config-opts" : [
-                "-Dintrospection=enabled",
-                "-Dvapi=true",
-                "-Dgtk_doc=true",
-                "-Dtests=false",
-                "-Dexamples=false"
-            ],
-            "sources" : [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/libhandy.git",
-                    "commit": "4bb04997e5021e9f12cd83bd086c1f73795513a4"
+                    "url": "https://download.gnome.org/sources/gnome-desktop/43/gnome-desktop-43.tar.xz",
+                    "sha256": "3d6e153317486157596aa3802f87676414c570738f450a94a041fe8835420a69",
                 }
             ]
         },
@@ -241,8 +189,7 @@
             "config-opts": [
                 "-Dnautilus=false",
                 "-Dthumbnailer=false",
-                "-Dgtk_doc=false",
-                "-Dintrospection=false"
+                "-Dgtk_doc=false"
             ],
             "sources": [
                 {
