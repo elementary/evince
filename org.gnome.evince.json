@@ -1,32 +1,34 @@
 {
-    "app-id": "org.gnome.Evince",
-    "runtime": "io.elementary.Platform",
-    "runtime-version": "7.1",
-    "sdk": "io.elementary.Sdk",
-    "command": "evince",
-    "finish-args": [
+    "app-id" : "org.gnome.Evince",
+    "runtime" : "io.elementary.Platform",
+    "runtime-version" : "7.1",
+    "sdk" : "io.elementary.Sdk",
+    "command" : "evince",
+    "copy-icon" : true,
+    "finish-args" : [
         "--share=ipc",
         "--socket=x11",
         "--socket=wayland",
-        "--socket=cups",
         "--socket=pulseaudio",
         "--filesystem=host",
         "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
         "--metadata=X-DConf=migrate-path=/org/gnome/evince/",
-        "--filesystem=xdg-run/gvfsd",
         "--talk-name=org.gtk.vfs.*",
+        "--filesystem=xdg-run/gvfsd",
         "--talk-name=org.gnome.SessionManager",
         "--talk-name=org.freedesktop.FileManager1",
         "--own-name=org.gnome.evince",
         "--own-name=org.gnome.evince.Daemon",
         "--require-version=0.11.6"
     ],
-    "build-options": {
-        "env": {
-            "V": "1"
+    "build-options" : {
+        "cflags" : "-O2 -g",
+        "cxxflags" : "-O2 -g",
+        "env" : {
+            "V" : "1"
         }
     },
-    "cleanup": [
+    "cleanup" : [
         "/include",
         "/lib/pkgconfig",
         "/share/pkgconfig",
@@ -39,6 +41,7 @@
         "*.a"
     ],
     "modules": [
+        "python3-gi-docgen-dependencies.json",
         {
             "name": "webp-pixbuf-loader",
             "buildsystem": "meson",
@@ -102,8 +105,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://poppler.freedesktop.org/poppler-22.11.0.tar.xz",
-                    "sha256": "093ba9844ed774285517361c15e21a31ba4df278a499263d4403cca74f2da828",
+                    "url": "https://poppler.freedesktop.org/poppler-22.07.0.tar.xz",
+                    "sha256": "420230c5c43782e2151259b3e523e632f4861342aad70e7e20b8773d9eaf3428",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 3686,
@@ -140,14 +143,14 @@
                 "-Denable-test=false",
                 "-Ddisable-introspection=true"
             ],
-            "cleanup": [
+            "cleanup" : [
                 "/bin"
             ],
-            "sources": [
+            "sources" : [
                 {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/libgxps/0.3/libgxps-0.3.2.tar.xz",
-                    "sha256": "6d27867256a35ccf9b69253eb2a88a32baca3b97d5f4ef7f82e3667fa435251c"
+                    "type" : "archive",
+                    "url" : "https://download.gnome.org/sources/libgxps/0.3/libgxps-0.3.2.tar.xz",
+                    "sha256" : "6d27867256a35ccf9b69253eb2a88a32baca3b97d5f4ef7f82e3667fa435251c"
                 }
             ]
         },
@@ -178,8 +181,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-desktop/43/gnome-desktop-43.tar.xz",
-                    "sha256": "3d6e153317486157596aa3802f87676414c570738f450a94a041fe8835420a69"
+                    "url": "https://download.gnome.org/sources/gnome-desktop/42/gnome-desktop-42.4.tar.xz",
+                    "sha256": "1ce2c9d5067969dbe0b282ea5a9acfb8698751f03cd07e2c730240f85dc9ad25"
                 }
             ]
         },
@@ -189,13 +192,16 @@
             "config-opts": [
                 "-Dnautilus=false",
                 "-Dthumbnailer=false",
-                "-Dgtk_doc=false"
+                "-Dgtk_doc=true",
+                "-Dintrospection=true",
+                "-Duser_doc=false",
+                "-Ddevelopment=true"
             ],
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/evince.git",
-                    "tag": "43.1"
+                    "tag": "44.1",
+                    "url": "https://gitlab.gnome.org/GNOME/evince.git"
                 }
             ],
             "cleanup": [
