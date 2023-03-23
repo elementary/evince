@@ -211,7 +211,7 @@
                     "type": "archive",
                     "url": "https://download.gnome.org/sources/evince/44/evince-44.1.tar.xz",
                     "sha256": "15afd3bb15ffb38fecab34c23350950ad270ab03a85b94e333d9dd7ee6a74314",
-                    "git-init": true,
+                    "git-init": true
                 }
             ],
             "cleanup": [
