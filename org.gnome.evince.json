@@ -13,6 +13,7 @@
         "--filesystem=/media:ro",
         "--filesystem=/run/media:ro",
         "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
+        "--metadata=X-DConf=migrate-path=/org/gnome/evince/",
         "--filesystem=xdg-run/gvfsd",
         "--talk-name=org.gtk.vfs.*",
         "--talk-name=org.gnome.SessionManager",
