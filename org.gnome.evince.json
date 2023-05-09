@@ -1,16 +1,17 @@
 {
-    "app-id": "org.gnome.Evince",
+    "id": "org.gnome.Evince",
     "runtime": "io.elementary.Platform",
     "runtime-version": "7.1",
     "sdk": "io.elementary.Sdk",
     "command": "evince",
     "finish-args": [
         "--share=ipc",
-        "--socket=x11",
+        "--socket=fallback-x11",
         "--socket=wayland",
-        "--socket=cups",
         "--socket=pulseaudio",
-        "--filesystem=host",
+        "--filesystem=home:ro",
+        "--filesystem=/media:ro",
+        "--filesystem=/run/media:ro",
         "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
         "--metadata=X-DConf=migrate-path=/org/gnome/evince/",
         "--filesystem=xdg-run/gvfsd",
@@ -47,15 +48,15 @@
                     "GDK_PIXBUF_MODULEDIR": "/app/lib/evince/gdk-pixbuf/2.10.0/"
                 }
             },
-            "config-opts" : [
+            "config-opts": [
                 "-Dgdk_pixbuf_moduledir=/app/lib/evince/gdk-pixbuf/2.10.0/"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/aruiz/webp-pixbuf-loader.git",
-                    "commit": "1e1cad735784d16dd9b46d0415095d23029ab017",
-                    "tag": "0.0.6"
+                    "commit": "36b3df08af61887f3558e4d783e8710627a7a4b7",
+                    "tag": "0.2.2"
                 }
             ],
             "post-install": [
@@ -71,8 +72,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://poppler.freedesktop.org/poppler-data-0.4.11.tar.gz",
-                    "sha256": "2cec05cd1bb03af98a8b06a1e22f6e6e1a65b1e2f3816cb3069bb0874825f08c",
+                    "url": "https://poppler.freedesktop.org/poppler-data-0.4.12.tar.gz",
+                    "sha256": "c835b640a40ce357e1b83666aabd95edffa24ddddd49b8daff63adb851cdab74",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 3687,
@@ -102,9 +103,10 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://poppler.freedesktop.org/poppler-22.11.0.tar.xz",
-                    "sha256": "093ba9844ed774285517361c15e21a31ba4df278a499263d4403cca74f2da828",
+                    "url": "https://poppler.freedesktop.org/poppler-23.03.0.tar.xz",
+                    "sha256": "b04148bf849c1965ada7eff6be4685130e3a18a84e0cce73bf9bc472ec32f2b4",
                     "x-checker-data": {
+                        "is-important": true,
                         "type": "anitya",
                         "project-id": 3686,
                         "url-template": "https://poppler.freedesktop.org/poppler-$version.tar.xz"
@@ -134,9 +136,9 @@
             ]
         },
         {
-            "name" : "libgxps",
-            "buildsystem" : "meson",
-            "config-opts" : [
+            "name": "libgxps",
+            "buildsystem": "meson",
+            "config-opts": [
                 "-Denable-test=false",
                 "-Ddisable-introspection=true"
             ],
@@ -147,7 +149,12 @@
                 {
                     "type": "archive",
                     "url": "https://download.gnome.org/sources/libgxps/0.3/libgxps-0.3.2.tar.xz",
-                    "sha256": "6d27867256a35ccf9b69253eb2a88a32baca3b97d5f4ef7f82e3667fa435251c"
+                    "sha256": "6d27867256a35ccf9b69253eb2a88a32baca3b97d5f4ef7f82e3667fa435251c",
+                    "x-checker-data": {
+                        "type": "gnome",
+                        "stable-only": false,
+                        "name": "libgxps"
+                    }
                 }
             ]
         },
@@ -159,8 +166,12 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gspell/1.9/gspell-1.9.1.tar.xz",
-                    "sha256": "dcbb769dfdde8e3c0a8ed3102ce7e661abbf7ddf85df08b29915e92cd723abdd"
+                    "url": "https://download.gnome.org/sources/gspell/1.12/gspell-1.12.0.tar.xz",
+                    "sha256": "40d2850f1bb6e8775246fa1e39438b36caafbdbada1d28a19fa1ca07e1ff82ad",
+                    "x-checker-data": {
+                        "type": "gnome",
+                        "name": "gspell"
+                    }
                 }
             ]
         },
@@ -178,8 +189,12 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-desktop/43/gnome-desktop-43.tar.xz",
-                    "sha256": "3d6e153317486157596aa3802f87676414c570738f450a94a041fe8835420a69"
+                    "url": "https://download.gnome.org/sources/gnome-desktop/44/gnome-desktop-44.0.tar.xz",
+                    "sha256": "42c773745d84ba14bc1cf1c4c6f4606148803a5cd337941c63964795f3c59d42",
+                    "x-checker-data": {
+                        "type": "gnome",
+                        "name": "gnome-desktop"
+                    }
                 }
             ]
         },
@@ -193,9 +208,10 @@
             ],
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/evince.git",
-                    "tag": "43.1"
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/evince/44/evince-44.1.tar.xz",
+                    "sha256": "15afd3bb15ffb38fecab34c23350950ad270ab03a85b94e333d9dd7ee6a74314",
+                    "git-init": true
                 }
             ],
             "cleanup": [
