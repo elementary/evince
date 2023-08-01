@@ -165,8 +165,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gspell/1.12/gspell-1.12.1.tar.xz",
-                    "sha256": "8ec44f32052e896fcdd4926eb814a326e39a5047e251eec7b9056fbd9444b0f1",
+                    "url": "https://download.gnome.org/sources/gspell/1.12/gspell-1.12.2.tar.xz",
+                    "sha256": "b4e993bd827e4ceb6a770b1b5e8950fce3be9c8b2b0cbeb22fdf992808dd2139",
                     "x-checker-data": {
                         "type": "gnome",
                         "name": "gspell"
