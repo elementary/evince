@@ -188,10 +188,10 @@
             "sources": [
                 {
                     "type": "archive",
-                    "is-important": true,
                     "url": "https://download.gnome.org/sources/gnome-desktop/44/gnome-desktop-44.1.tar.xz",
                     "sha256": "ae7ca55dc9e08914999741523a17d29ce223915626bd2462a120bf96f47a79ab",
                     "x-checker-data": {
+                        "is-important": true,
                         "type": "gnome",
                         "name": "gnome-desktop"
                     }
