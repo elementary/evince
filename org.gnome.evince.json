@@ -159,6 +159,13 @@
         },
         {
             "name": "gspell",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Dgspell_app=false",
+                "-Dgtk_doc=false",
+                "-Dtests=false",
+                "-Dinstall_tests=false"
+            ],
             "cleanup": [
                 "/bin"
             ],
