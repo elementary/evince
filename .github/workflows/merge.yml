@@ -32,8 +32,8 @@ jobs:
       - name: Build
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6.4
         with:
-          bundle: evince.flatpak
-          manifest-path: org.gnome.evince.json
+          bundle: papers.flatpak
+          manifest-path: org.gnome.papers.json
           run-tests: true
           repository-name: appcenter
           repository-url: https://flatpak.elementary.io/repo.flatpakrepo

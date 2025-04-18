@@ -1,2 +1,2 @@
-# evince
-Evince Document Viewer flatpak built against the elementary platform
+# papers
+Papers Document Viewer flatpak built against the elementary platform
