@@ -1029,6 +1029,32 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/granite-rs/granite-rs-2.0.0.crate",
+        "sha256": "f025950e055e37c13cc66953fd006087a702fe1f84eada671b9cf40839347063",
+        "dest": "cargo/vendor/granite-rs-2.0.0"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"f025950e055e37c13cc66953fd006087a702fe1f84eada671b9cf40839347063\", \"files\": {}}",
+        "dest": "cargo/vendor/granite-rs-2.0.0",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
+        "url": "https://static.crates.io/crates/granite-rs-sys/granite-rs-sys-0.5.0.crate",
+        "sha256": "cc51e7dcbcb6f966c169dc3c18651e189b1c5720ba385549345c04e81de8e30a",
+        "dest": "cargo/vendor/granite-rs-sys-0.5.0"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": \"cc51e7dcbcb6f966c169dc3c18651e189b1c5720ba385549345c04e81de8e30a\", \"files\": {}}",
+        "dest": "cargo/vendor/granite-rs-sys-0.5.0",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "archive",
+        "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/graphene-rs/graphene-rs-0.20.9.crate",
         "sha256": "3cbc5911bfb32d68dcfa92c9510c462696c2f715548fcd7f3f1be424c739de19",
         "dest": "cargo/vendor/graphene-rs-0.20.9"
