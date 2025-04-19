@@ -173,7 +173,7 @@
                         "cp cargo/config .cargo/"
                     ]
                 }
-            ]
+            ],
             "cleanup": [
                 "org.gnome.Papers.svg"
             ]
