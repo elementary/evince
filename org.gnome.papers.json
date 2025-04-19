@@ -182,6 +182,10 @@
                         "mkdir .cargo",
                         "cp cargo/config .cargo/"
                     ]
+                },
+                {
+                    "type": "patch",
+                    "path": "granite_init.patch"
                 }
             ],
             "cleanup": [
