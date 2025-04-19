@@ -185,7 +185,11 @@
                 },
                 {
                     "type": "patch",
-                    "path": "granite_init.patch"
+                    "path": "add-granite.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "granite-init.patch"
                 }
             ],
             "cleanup": [
