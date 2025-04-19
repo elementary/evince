@@ -1,8 +1,6 @@
 {
     "id": "org.gnome.Papers",
     "runtime": "io.elementary.Platform",
-    /* FIXME Papers requires gtk4 >= 4.17.1 and 8.1 is now based on GNOME runtime 48 which comes with gtk4 4.18.4 */
-    /* but for some reason latest 8.1 runtime comes with gtk4 4.16.12. Use daily for now as testing. */
     "runtime-version": "daily",
     "sdk": "io.elementary.Sdk",
     "sdk-extensions": [
