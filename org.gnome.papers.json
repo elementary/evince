@@ -40,6 +40,30 @@
     ],
     "modules": [
         {
+            "name": "gdk-pixbuf",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Dothers=enabled",
+                "-Dgtk_doc=false",
+                "-Dman=false"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/gdk-pixbuf/2.42/gdk-pixbuf-2.42.12.tar.xz",
+                    "sha256": "b9505b3445b9a7e48ced34760c3bcb73e966df3ac94c95a148cb669ab748e3c7",
+                    "x-checker-data": {
+                        "type": "gnome",
+                        "name": "gdk-pixbuf",
+                        "stable-only": true
+                    }
+                }
+            ],
+            "post-install": [
+                "gdk-pixbuf-query-loaders /usr/lib/*/gdk-pixbuf-2.0/2.10.0/loaders/*.so /app/lib/gdk-pixbuf-2.0/2.10.0/loaders/*.so > /app/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
+            ]
+        },
+        {
             "name": "popplerdata",
             "no-autogen": true,
             "make-install-args": [
