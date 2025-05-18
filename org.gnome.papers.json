@@ -60,6 +60,7 @@
                 }
             ],
             "post-install": [
+                "mkdir -p /app/lib/gdk-pixbuf-2.0/2.10.0",
                 "gdk-pixbuf-query-loaders /usr/lib/*/gdk-pixbuf-2.0/2.10.0/loaders/*.so /app/lib/gdk-pixbuf-2.0/2.10.0/loaders/*.so > /app/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
             ]
         },
