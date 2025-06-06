@@ -29,11 +29,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Rust SDK extension
+        run: |
+          flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+          flatpak install -y --arch=${{ matrix.configuration.arch }} org.freedesktop.Sdk.Extension.rust-stable//24.08
+
       - name: Build
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6.5
         with:
-          bundle: evince.flatpak
-          manifest-path: org.gnome.evince.json
+          bundle: papers.flatpak
+          manifest-path: org.gnome.papers.json
           run-tests: true
           repository-name: appcenter
           repository-url: https://flatpak.elementary.io/repo.flatpakrepo
