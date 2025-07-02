@@ -190,8 +190,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/papers/48/papers-48.2.tar.xz",
-                    "sha256": "1e9bc59613424bf655223c6bdca873ae2f1dda27cf02d7342bff5b559051606d",
+                    "url": "https://download.gnome.org/sources/papers/48/papers-48.4.tar.xz",
+                    "sha256": "f11aa1c544ac211259e230b40c804ae64077339a57bdefa3dbbeb57f9166e3fd",
                     "x-checker-data": {
                         "is-important": true,
                         "type": "gnome",
