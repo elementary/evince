@@ -1,5 +1,5 @@
 diff --git a/shell/src/application.rs b/shell/src/application.rs
-index bda534482..230d9b797 100644
+index bda534482..dd3cb98bc 100644
 --- a/shell/src/application.rs
 +++ b/shell/src/application.rs
 @@ -38,6 +38,12 @@ mod imp {
@@ -7,7 +7,7 @@ index bda534482..230d9b797 100644
              gio::resources_register(&resources);
  
 +            // We need to initialize Granite before parent_startup() to prefer our stylesheet than Adwaita
-+            // but it causes a panic at runtime that arguest GTK is not initialized,
++            // but it causes a panic at runtime that argues GTK is not initialized,
 +            // so initialize it explicitly
 +            let _ = gtk::init();
 +            granite::init();
