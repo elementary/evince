@@ -34,6 +34,7 @@
         "/man",
         "/share/man",
         "/share/gtk-doc",
+        "/share/gir-1.0",
         "/share/vala",
         "*.la",
         "*.a"
@@ -45,7 +46,12 @@
             "config-opts": [
                 "-Dothers=enabled",
                 "-Dgtk_doc=false",
-                "-Dman=false"
+                "-Dman=false",
+                "-Dinstalled_tests=false"
+            ],
+            "cleanup": [
+                "/share/thumbnailers",
+                "/bin"
             ],
             "sources": [
                 {
@@ -217,7 +223,11 @@
             ],
             "cleanup": [
                 "org.gnome.Papers.svg"
+            ],
+            "post-install": [
+                "for help_locale_dir in /app/share/help/??*; do mv $help_locale_dir /app/share/locale/${help_locale_dir##*/}/help; ln -s /app/share/locale/${help_locale_dir##*/}/help $help_locale_dir; done"
             ]
+        }
         },
         {
             "name": "customizations",
