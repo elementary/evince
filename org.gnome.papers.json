@@ -1,27 +1,27 @@
 {
-    "id": "org.gnome.Evince",
+    "id": "org.gnome.Papers",
     "runtime": "io.elementary.Platform",
-    "runtime-version": "8",
+    "runtime-version": "8.2",
     "sdk": "io.elementary.Sdk",
-    "command": "evince",
+    "sdk-extensions": [
+        "org.freedesktop.Sdk.Extension.rust-stable"
+    ],
+    "command": "papers",
+    "copy-icon": true,
     "finish-args": [
         "--share=ipc",
         "--socket=fallback-x11",
+        "--device=dri",
         "--socket=wayland",
         "--socket=pulseaudio",
+        "--talk-name=org.gtk.vfs.*",
         "--filesystem=home:ro",
         "--filesystem=/media:ro",
         "--filesystem=/run/media:ro",
-        "--talk-name=org.gnome.SettingsDaemon.MediaKeys",
-        "--filesystem=xdg-run/gvfsd",
-        "--talk-name=org.gtk.vfs.*",
-        "--talk-name=org.gnome.SessionManager",
-        "--talk-name=org.freedesktop.FileManager1",
-        "--own-name=org.gnome.evince",
-        "--own-name=org.gnome.evince.Daemon",
-        "--require-version=0.11.6"
+        "--filesystem=xdg-run/gvfsd"
     ],
     "build-options": {
+        "append-path": "/usr/lib/sdk/rust-stable/bin",
         "env": {
             "V": "1"
         }
@@ -34,32 +34,40 @@
         "/man",
         "/share/man",
         "/share/gtk-doc",
+        "/share/gir-1.0",
         "/share/vala",
         "*.la",
         "*.a"
     ],
     "modules": [
         {
-            "name": "webp-pixbuf-loader",
+            "name": "gdk-pixbuf",
             "buildsystem": "meson",
-            "build-options": {
-                "env": {
-                    "GDK_PIXBUF_MODULEDIR": "/app/lib/evince/gdk-pixbuf/2.10.0/"
-                }
-            },
             "config-opts": [
-                "-Dgdk_pixbuf_moduledir=/app/lib/evince/gdk-pixbuf/2.10.0/"
+                "-Dothers=enabled",
+                "-Dgtk_doc=false",
+                "-Dman=false",
+                "-Dinstalled_tests=false"
+            ],
+            "cleanup": [
+                "/share/thumbnailers",
+                "/bin"
             ],
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://github.com/aruiz/webp-pixbuf-loader.git",
-                    "commit": "36b3df08af61887f3558e4d783e8710627a7a4b7",
-                    "tag": "0.2.2"
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/gdk-pixbuf/2.42/gdk-pixbuf-2.42.12.tar.xz",
+                    "sha256": "b9505b3445b9a7e48ced34760c3bcb73e966df3ac94c95a148cb669ab748e3c7",
+                    "x-checker-data": {
+                        "type": "gnome",
+                        "name": "gdk-pixbuf",
+                        "stable-only": true
+                    }
                 }
             ],
             "post-install": [
-                "gdk-pixbuf-query-loaders > $GDK_PIXBUF_MODULEDIR/loaders.cache"
+                "mkdir -p /app/lib/gdk-pixbuf-2.0/2.10.0",
+                "gdk-pixbuf-query-loaders /usr/lib/*/gdk-pixbuf-2.0/2.10.0/loaders/*.so /app/lib/gdk-pixbuf-2.0/2.10.0/loaders/*.so > /app/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache"
             ]
         },
         {
@@ -105,10 +113,31 @@
                     "url": "https://poppler.freedesktop.org/poppler-25.07.0.tar.xz",
                     "sha256": "c504a9066dbdfebe377ad53cec641fd971ee96c4e1e8ca74e6c9c03d46d817ae",
                     "x-checker-data": {
-                        "is-important": true,
                         "type": "anitya",
                         "project-id": 3686,
                         "url-template": "https://poppler.freedesktop.org/poppler-$version.tar.xz"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "exempi",
+            "config-opts": [
+                "--disable-unittest",
+                "--disable-samples"
+            ],
+            "cleanup": [
+                "/bin"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://libopenraw.freedesktop.org/download/exempi-2.6.6.tar.xz",
+                    "sha256": "900fb9957be2095c78e5111b99c49378adac58161a358f52f93c55126f34eb8f",
+                    "x-checker-data": {
+                        "type": "anitya",
+                        "project-id": 767,
+                        "url-template": "https://libopenraw.freedesktop.org/download/exempi-$version.tar.xz"
                     }
                 }
             ]
@@ -148,86 +177,55 @@
                 {
                     "type": "archive",
                     "url": "https://download.gnome.org/sources/libgxps/0.3/libgxps-0.3.2.tar.xz",
-                    "sha256": "6d27867256a35ccf9b69253eb2a88a32baca3b97d5f4ef7f82e3667fa435251c",
-                    "x-checker-data": {
-                        "type": "gnome",
-                        "stable-only": false,
-                        "name": "libgxps"
-                    }
+                    "sha256": "6d27867256a35ccf9b69253eb2a88a32baca3b97d5f4ef7f82e3667fa435251c"
                 }
             ]
         },
         {
-            "name": "gspell",
+            "name": "papers",
             "buildsystem": "meson",
-            "config-opts": [
-                "-Dgspell_app=false",
-                "-Dgtk_doc=false",
-                "-Dtests=false",
-                "-Dinstall_tests=false"
-            ],
-            "cleanup": [
-                "/bin"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/gspell/1.14/gspell-1.14.0.tar.xz",
-                    "sha256": "64ea1d8e9edc1c25b45a920e80daf67559d1866ffcd7f8432fecfea6d0fe8897",
-                    "x-checker-data": {
-                        "type": "gnome",
-                        "name": "gspell"
-                    }
-                }
-            ]
-        },
-        {
-            "name": "gnome-desktop",
-            "buildsystem": "meson",
-            "config-opts": [
-                "-Ddesktop_docs=false",
-                "-Ddebug_tools=false"
-            ],
-            "cleanup": [
-                "/lib/girepository-1.0",
-                "/share/gir-1.0"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-desktop/44/gnome-desktop-44.3.tar.xz",
-                    "sha256": "40efa9aa8d50effed9227a3d70671e32e9dc35e20f331cab3b562975978f4f8d",
-                    "x-checker-data": {
-                        "is-important": true,
-                        "type": "gnome",
-                        "name": "gnome-desktop"
-                    }
-                }
-            ]
-        },
-        {
-            "name": "evince",
-            "buildsystem": "meson",
+            "build-options": {
+                "libdir": "/app/lib"
+            },
             "config-opts": [
                 "-Dnautilus=false",
                 "-Dthumbnailer=false",
-                "-Dgtk_doc=false"
+                "-Ddocumentation=false",
+                "-Dintrospection=disabled"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/evince/48/evince-48.1.tar.xz",
-                    "sha256": "7d8b9a6fa3a05d3f5b9048859027688c73a788ff6e923bc3945126884943fa10",
-                    "git-init": true,
+                    "url": "https://download.gnome.org/sources/papers/48/papers-48.4.tar.xz",
+                    "sha256": "f11aa1c544ac211259e230b40c804ae64077339a57bdefa3dbbeb57f9166e3fd",
                     "x-checker-data": {
                         "is-important": true,
                         "type": "gnome",
-                        "name": "evince"
+                        "name": "papers"
                     }
+                },
+                "generated-sources.json",
+                {
+                    "type": "shell",
+                    "commands": [
+                        "mkdir .cargo",
+                        "cp cargo/config .cargo/"
+                    ]
+                },
+                {
+                    "type": "patch",
+                    "path": "add-granite.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "granite-init.patch"
                 }
             ],
             "cleanup": [
-                "org.gnome.Evince.svg"
+                "org.gnome.Papers.svg"
+            ],
+            "post-install": [
+                "for help_locale_dir in /app/share/help/??*; do mv $help_locale_dir /app/share/locale/${help_locale_dir##*/}/help; ln -s /app/share/locale/${help_locale_dir##*/}/help $help_locale_dir; done"
             ]
         },
         {

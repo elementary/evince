@@ -1,0 +1,62 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index 8e0cd7d2f..c30a96c9c 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -826,6 +826,37 @@ dependencies = [
+  "system-deps",
+ ]
+ 
++[[package]]
++name = "granite-rs"
++version = "2.0.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "f025950e055e37c13cc66953fd006087a702fe1f84eada671b9cf40839347063"
++dependencies = [
++ "bitflags",
++ "gdk4",
++ "gio",
++ "glib",
++ "granite-rs-sys",
++ "gtk4",
++ "libc",
++ "once_cell",
++]
++
++[[package]]
++name = "granite-rs-sys"
++version = "0.5.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "cc51e7dcbcb6f966c169dc3c18651e189b1c5720ba385549345c04e81de8e30a"
++dependencies = [
++ "gdk4-sys",
++ "gio-sys",
++ "glib-sys",
++ "gobject-sys",
++ "gtk4-sys",
++ "libc",
++ "system-deps",
++]
++
+ [[package]]
+ name = "graphene-rs"
+ version = "0.20.9"
+@@ -1344,6 +1375,7 @@ dependencies = [
+  "env_logger",
+  "futures",
+  "gettext-rs",
++ "granite-rs",
+  "gtk4",
+  "libadwaita",
+  "log",
+diff --git a/shell/Cargo.toml b/shell/Cargo.toml
+index fbafc8680..ff94014c2 100644
+--- a/shell/Cargo.toml
++++ b/shell/Cargo.toml
+@@ -24,6 +24,7 @@ futures = "0.3"
+ oo7 = { version = "0.3", optional = true }
+ 
+ gtk = { workspace = true, features = ["gnome_45"]}
++granite = { version = "2.0", package = "granite-rs", features = ["v7_2"] }
+ 
+ [dependencies.adw]
+ package = "libadwaita"

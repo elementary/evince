@@ -1,4 +1,4 @@
-project('org.gnome.Evince',
+project('org.gnome.Papers',
   meson_version: '>= 0.57.0'
 )
 
