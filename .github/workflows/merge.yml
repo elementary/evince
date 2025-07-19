@@ -47,3 +47,5 @@ jobs:
           repository: appcenter
           flat-manager-url: https://flatpak-api.elementary.io
           token: ${{ secrets.FLAT_MANAGER_TOKEN }}
+          end-of-life: "The application is no longer updated with the upstream in favor of Papers"
+          end-of-life-rebase: "org.gnome.Papers"
