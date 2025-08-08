@@ -24,7 +24,8 @@
     "build-options": {
         "env": {
             "V": "1"
-        }
+        },
+        "libdir": "/app/lib"
     },
     "cleanup": [
         "/include",
