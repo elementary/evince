@@ -103,8 +103,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://poppler.freedesktop.org/poppler-25.08.0.tar.xz",
-                    "sha256": "425ed4d4515a093bdcdbbaac6876f20617451edc710df6a4fd6c45dd67eb418d",
+                    "url": "https://poppler.freedesktop.org/poppler-25.09.1.tar.xz",
+                    "sha256": "0c1091d01d3dd1664a13816861e812d02b29201e96665454b81b52d261fad658",
                     "x-checker-data": {
                         "is-important": true,
                         "type": "anitya",
@@ -196,8 +196,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-desktop/44/gnome-desktop-44.3.tar.xz",
-                    "sha256": "40efa9aa8d50effed9227a3d70671e32e9dc35e20f331cab3b562975978f4f8d",
+                    "url": "https://download.gnome.org/sources/gnome-desktop/44/gnome-desktop-44.4.tar.xz",
+                    "sha256": "1d8cb9c6a328eb689b0c1269cf53834cc84d851d7e71970cdabba82706b44984",
                     "x-checker-data": {
                         "is-important": true,
                         "type": "gnome",
