@@ -173,8 +173,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gspell/1.14/gspell-1.14.0.tar.xz",
-                    "sha256": "64ea1d8e9edc1c25b45a920e80daf67559d1866ffcd7f8432fecfea6d0fe8897",
+                    "url": "https://download.gnome.org/sources/gspell/1.14/gspell-1.14.2.tar.xz",
+                    "sha256": "4ec7e5accc9013281bacd6bbc00006be733818b81ba3fe332c1e876c7e1e1477",
                     "x-checker-data": {
                         "type": "gnome",
                         "name": "gspell"
