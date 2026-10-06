@@ -1,3 +1,9 @@
+org.gnome.evince (48.4) jammy; urgency=medium
+
+  * New upstream release
+
+ -- Ryo Nakano <ryonakaknock3@gmail.com>  Wed, 07 Oct 2026 07:57:28 +0900
+
 org.gnome.evince (42.2) jammy; urgency=medium
 
   * New upstream release
