@@ -22,15 +22,15 @@ jobs:
       fail-fast: false
 
     container:
-      image: ghcr.io/elementary/flatpak-platform/runtime:8-${{ matrix.configuration.arch }}
+      image: ghcr.io/elementary/flatpak-platform/runtime:9-${{ matrix.configuration.arch }}
       options: --privileged
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Build
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.5
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6.8
         with:
           bundle: evince.flatpak
           manifest-path: org.gnome.evince.json
@@ -42,7 +42,7 @@ jobs:
           arch: ${{ matrix.configuration.arch }}
 
       - name: Deploy
-        uses: flatpak/flatpak-github-actions/flat-manager@v6.5
+        uses: flatpak/flatpak-github-actions/flat-manager@v6.8
         with:
           repository: appcenter
           flat-manager-url: https://flatpak-api.elementary.io

@@ -1,7 +1,7 @@
 {
     "id": "org.gnome.Evince",
     "runtime": "io.elementary.Platform",
-    "runtime-version": "8",
+    "runtime-version": "9",
     "sdk": "io.elementary.Sdk",
     "command": "evince",
     "finish-args": [
@@ -24,7 +24,8 @@
     "build-options": {
         "env": {
             "V": "1"
-        }
+        },
+        "libdir": "/app/lib"
     },
     "cleanup": [
         "/include",
@@ -102,13 +103,16 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://poppler.freedesktop.org/poppler-25.07.0.tar.xz",
-                    "sha256": "c504a9066dbdfebe377ad53cec641fd971ee96c4e1e8ca74e6c9c03d46d817ae",
+                    "url": "https://poppler.freedesktop.org/poppler-26.04.0.tar.xz",
+                    "sha256": "b0955163114af96bc0106f68cb24daf973a629462453d8b82775f81b0d4e0693",
                     "x-checker-data": {
                         "is-important": true,
                         "type": "anitya",
                         "project-id": 3686,
-                        "url-template": "https://poppler.freedesktop.org/poppler-$version.tar.xz"
+                        "url-template": "https://poppler.freedesktop.org/poppler-$version.tar.xz",
+                        "versions": {
+                            "<": "26.05.0"
+                        }
                     }
                 }
             ]
@@ -124,8 +128,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://downloads.sourceforge.net/project/djvu/DjVuLibre/3.5.29/djvulibre-3.5.29.tar.gz",
-                    "sha256": "d3b4b03ae2bdca8516a36ef6eb27b777f0528c9eda26745d9962824a3fdfeccf",
+                    "url": "https://downloads.sourceforge.net/project/djvu/DjVuLibre/3.5.30/djvulibre-3.5.30.tar.gz",
+                    "sha256": "ee5e457d4cfebe566f94b99e5e3d3cc7f5c79ddb741c2ac2ba2e456f00329644",
                     "x-checker-data": {
                         "type": "anitya",
                         "project-id": 10159,
@@ -172,8 +176,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gspell/1.14/gspell-1.14.0.tar.xz",
-                    "sha256": "64ea1d8e9edc1c25b45a920e80daf67559d1866ffcd7f8432fecfea6d0fe8897",
+                    "url": "https://download.gnome.org/sources/gspell/1.14/gspell-1.14.5.tar.xz",
+                    "sha256": "788783b56fc3d03283b3aa29302d0b958aeca88835e10b1ec61f19e0efc7e8a4",
                     "x-checker-data": {
                         "type": "gnome",
                         "name": "gspell"
@@ -195,8 +199,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-desktop/44/gnome-desktop-44.3.tar.xz",
-                    "sha256": "40efa9aa8d50effed9227a3d70671e32e9dc35e20f331cab3b562975978f4f8d",
+                    "url": "https://download.gnome.org/sources/gnome-desktop/51/gnome-desktop-51.0.tar.xz",
+                    "sha256": "9ebeb9f1769d3c310caeadd921ab34c8f264b92937740518b3bc859a579a6912",
                     "x-checker-data": {
                         "is-important": true,
                         "type": "gnome",
@@ -216,8 +220,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/evince/48/evince-48.1.tar.xz",
-                    "sha256": "7d8b9a6fa3a05d3f5b9048859027688c73a788ff6e923bc3945126884943fa10",
+                    "url": "https://download.gnome.org/sources/evince/48/evince-48.4.tar.xz",
+                    "sha256": "f296c5c662886635d4cd597e8ac0afcde7982be4486533c2b7f095b268be8668",
                     "git-init": true,
                     "x-checker-data": {
                         "is-important": true,
