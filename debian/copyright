@@ -3,7 +3,7 @@ Upstream-Name: org.gnome.Evince
 Source: https://github.com/elementary/evince
 
 Files: *
-Copyright: 2021-2022 elementary, Inc.
+Copyright: 2021-2026 elementary, Inc.
 License: GPL-3.0+
 
 License: GPL-3.0+
